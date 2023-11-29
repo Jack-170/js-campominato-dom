@@ -6,12 +6,14 @@
 
 // creo una funzione che mi generi la griglia 
 function generateGrid() {
+
     const cellsContainer = document.querySelector(".cells-container .d-flex");
-
-
     // creo un array per le bombe richiamando la funzione creata per i numeri random
 
     const bombPositions = genArray(1, 100, 16);
+
+    // creo uno score
+    let score = 0;
 
     
     // Creo una griglia di 100 celle
@@ -29,17 +31,21 @@ function generateGrid() {
         cell.addEventListener("click", () => {
             if (bombPositions.includes(i)) {
                 cell.classList.add("bomb");
-                console.log("Hai cliccato su una bomba! Partita terminata.");
-                // Aggiungi qui la logica per terminare il gioco quando si clicca su una bomba
+                alert("Hai cliccato su una bomba! Partita terminata.Il tuo puneggio è di: " + score);
+                console.log("Peccato hai perso, hai preso la bomba nella cella: ", i);
+
+                
             } else {
                 cell.classList.add("bg-lightblue");
+                // incremento lo score 
+                score++;
                 console.log("Numero cella cliccata: ", i);
-                // Aggiungi qui la logica per continuare il gioco quando si clicca su una cella senza bomba
+                console.log("Punteggio attuale: ", score);
+               
             }
-        });
-    }
+    }   );}
+}   
 
-}
 // associo la funzione precedentemente creata al click del bottone 
 document.addEventListener("click", 
     function() {
